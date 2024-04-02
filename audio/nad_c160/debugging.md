@@ -108,8 +108,10 @@ Removing cover under the amp gives access
 
 Looking on the signal out on pin 6 on both M403 and M303 looks the same, so does not seem to be bad out of the line out module.
 
+# Solved?
 I had one oscilloscope probe on X10 on the probe, was it all for nothing? 
 Now it seems good when measuring at least...
 
 Seems to still be some bad signal on R channel when adjusting the balance, I think it was improved by just working with it, might fail again later.
+
 Need to test in a system with actual sound not just test signals.
