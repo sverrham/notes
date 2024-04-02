@@ -1,0 +1,10 @@
+NET "clk"         LOC = AB13 | IOSTANDARD = LVCMOS25;
+                                            
+NET "clk" TNM_NET = "net_gclk_0";
+TIMESPEC TS_net_gclk_0 = PERIOD "net_gclk_0" 20 ns;     # over constrained at 20ns, There should be a 27MHz (37ns) oscillator installed here.
+         
+# SP605 board only                                            
+NET "LED[0]"         LOC = D17 | IOSTANDARD = LVCMOS25        ;
+NET "LED[1]"         LOC = AB4 | IOSTANDARD = LVCMOS25        ;
+NET "LED[2]"         LOC = D21 | IOSTANDARD = LVCMOS25        ;
+NET "LED[3]"         LOC = W15 | IOSTANDARD = LVCMOS25        ;
