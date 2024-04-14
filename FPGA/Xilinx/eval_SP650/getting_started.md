@@ -12,6 +12,7 @@ Among other interfaces.
 SW and licensing? It seems I have the rev D board, so tool version is ISE Design Suite 13.4 that is latest.
 
 The eval kit should have a node-locked license, so probably need to contact Xilinx support to get that sorted.
+The latest ISE 14.7 at least did not need a license to build, the webpack license seemed to work fine.
 
 Seems problematic with ISE, trying the ISE 14.7 win 10, its a VM version. so it should work in windows 10 (11?).
 
