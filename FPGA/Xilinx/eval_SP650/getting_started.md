@@ -26,9 +26,13 @@ That did not work still complained about virtualization not enabled.
 Fond this: https://helpdeskgeek.com/virtualization/how-to-fix-vt-x-is-not-available-verr_vmx-no-vmx-error-in-virtualbox/
 And following that setting the hyper-v feature off it looks like the virtual machine starts with ISE 14.7!!!
 
+Re adding the Hyper-v feature for wsl this stopped working, but updating virtualbox to version 7.0.16 the virtual machine started up.
+
 Adding a shared folder to the VM settings, need to mount the shared folder in the VM
 
 ```sudo mount -t vboxsf projects projects```
+
+In the shared folder settings one can just mark it as auto mount and its mounted when the virtual machine boots.
 
 Here the mount and share is named projects.
 
