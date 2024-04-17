@@ -42,3 +42,12 @@ This config worked testing with a 12V lab supply.
 
 ![design](design.drawio.svg)
 
+Might be I will drop the mosfet and only use the mercury switch.
+
+![simple design](simple_design.drawio.svg)
+
+## Part 3.
+
+Need to make a mounting for the pump and tilt switch.
+
+![mount](mount.drawio.svg)
