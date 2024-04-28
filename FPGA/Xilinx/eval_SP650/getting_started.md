@@ -50,3 +50,24 @@ Hmm, did not give me much.
 Started a new project to try to get a blinky working.
 Seems I managed to make something and compile it into a programming file...
 Got blinky running on the board. example code in blinky folder.
+
+## Need to get basics working
+
+### Uart
+First I need a uart point so I can get debug data out for next stages.
+looking at https://docs.amd.com/v/u/en-US/ug526 there is a usb to uart bridge.
+
+
+### First loop back serial
+Trying to just loop back the input so RX to TX.
+That worked as expected with following constraint:
+```
+NET "uart_tx" LOC = B21 | IOSTANDARD = LVCMOS25        ;
+NET "uart_rx" LOC = H17 | IOSTANDARD = LVCMOS25        ;
+```
+
+### Next try adding a uart module.
+Tried my old UART module in vhdl lib github project and that worked perfect.
+
+### Ethernet
+Would like to get the ethernet working, to be able to receive and send data on the ethernet interface.
