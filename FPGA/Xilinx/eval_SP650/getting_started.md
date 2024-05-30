@@ -71,3 +71,64 @@ Tried my old UART module in vhdl lib github project and that worked perfect.
 
 ### Ethernet
 Would like to get the ethernet working, to be able to receive and send data on the ethernet interface.
+It seems the mac ip in xilinx is licensed so cant use it.
+Found this project that could be interesting to try out if it can be used.
+https://github.com/yol/ethernet_mac
+
+Got the MAC over working, using the following constraints.
+
+```
+NET "clk_200_pi"         LOC = K21 | IOSTANDARD = LVDS_25;
+                                            
+#NET "clk" TNM_NET = "net_gclk_0";
+#TIMESPEC TS_net_gclk_0 = PERIOD "net_gclk_0" 20 ns;     # over constrained at 20ns, There should be a 27MHz (37ns) oscillator installed here.
+         
+# SP605 board only                                            
+NET "led_o[0]"         LOC = D17 | IOSTANDARD = LVCMOS25        ;
+NET "led_o[1]"         LOC = AB4 | IOSTANDARD = LVCMOS25        ;
+NET "led_o[2]"         LOC = D21 | IOSTANDARD = LVCMOS25        ;
+NET "led_o[3]"         LOC = W15 | IOSTANDARD = LVCMOS25        ;
+
+
+# phy signals
+net "phy_reset_o"   LOC = J22 | IOSTANDARD = LVCMOS25   ;
+net "mdc_o"         LOC = R19 | IOSTANDARD = LVCMOS25   ;
+net "mdio_io"       LOC = V20 | IOSTANDARD = LVCMOS25   ;
+
+# MII signals
+
+net "gmii_gtx_clk_o"     LOC = AB7 | IOSTANDARD = LVCMOS25   ;
+net "mii_tx_clk_i"       LOC = L20 | IOSTANDARD = LVCMOS25   ;
+net "mii_tx_er_o"        LOC = U8 | IOSTANDARD = LVCMOS25    ;
+net "mii_tx_en_o"        LOC = T8 | IOSTANDARD = LVCMOS25    ;
+net "mii_txd_o[0]"       LOC = U10 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[1]"       LOC = T10 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[2]"       LOC = AB8 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[3]"       LOC = AA8 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[4]"       LOC = AB9 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[5]"       LOC = Y9 | IOSTANDARD = LVCMOS25    ;
+net "mii_txd_o[6]"       LOC = Y12 | IOSTANDARD = LVCMOS25   ;
+net "mii_txd_o[7]"       LOC = W12 | IOSTANDARD = LVCMOS25   ;
+
+net "mii_rx_clk_i"       LOC = P20 | IOSTANDARD = LVCMOS25   ;
+net "mii_rx_er_i"        LOC = U20 | IOSTANDARD = LVCMOS25   ;
+net "mii_rx_dv_i"        LOC = T22 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[0]"       LOC = P19 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[1]"       LOC = Y22 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[2]"       LOC = Y21 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[3]"       LOC = W22 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[4]"       LOC = W20 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[5]"       LOC = V22 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[6]"       LOC = V21 | IOSTANDARD = LVCMOS25   ;
+net "mii_rxd_i[7]"       LOC = U22 | IOSTANDARD = LVCMOS25   ;
+```
+
+Connecting this up and connecting the rx to the serial port I see data flowing, so this deffinitly works.
+
+#### Next steps for ethernet would be to get ARP ICMP working
+With ARP and ICMP we can test with ping, also sending ip packets to the board.
+
+Would also need to have some ethernet framer and deframer module to strip and encapsulate the raw ethernet packets.
+
+Tok way long but got arp echo working sending arp packets received out on serial port.
+The mac rx_fifo does not work with reading on every clock cycle so needed to add a delay and read only every other clock cycle...
